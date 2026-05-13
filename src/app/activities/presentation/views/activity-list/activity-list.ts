@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -24,7 +24,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './activity-list.html',
   styleUrl: './activity-list.css'
 })
-export class ActivityList implements OnInit {
+export class ActivityList {
   protected store = inject(ActivitiesStore);
 
   selectedFilter = signal<string>('Todas');
@@ -48,10 +48,6 @@ export class ActivityList implements OnInit {
   formType: ActivityType = 'MEAL';
   formDate = '';
   formTime = '';
-
-  ngOnInit() {
-    this.store.getAll();
-  }
 
   get activities(): Activity[] {
     return this.store.activities();

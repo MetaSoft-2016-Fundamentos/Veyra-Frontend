@@ -1,7 +1,13 @@
+import { BaseEntity } from '../../../shared/domain/model/base-entity';
+
 export type ActivityType = 'MEAL' | 'BATH' | 'RISK_PROFILE';
 export type ActivityStatus = 'PENDING' | 'IN_PROGRESS' | 'COMPLETED';
 
-export class Activity {
+/**
+ * Activity entity representing a daily care activity recorded by healthcare staff.
+ * Acts as the Aggregate Root for the Activities bounded context.
+ */
+export class Activity implements BaseEntity {
   private _id: number;
   private _residentId: number;
   private _healthcareStaffId: number;
@@ -10,6 +16,10 @@ export class Activity {
   private _notes: string;
   private _loggedAt: string;
 
+  /**
+   * Constructor to initialize an Activity entity.
+   * @param activity - Object containing activity properties.
+   */
   constructor(activity: {
     id: number;
     residentId: number;
@@ -49,12 +59,20 @@ export class Activity {
   get loggedAt(): string { return this._loggedAt; }
   set loggedAt(value: string) { this._loggedAt = value; }
 
+  /**
+   * Logs the activity setting status to IN_PROGRESS and recording timestamp.
+   * @returns The updated Activity entity.
+   */
   log(): Activity {
     this._status = 'IN_PROGRESS';
     this._loggedAt = new Date().toISOString();
     return this;
   }
 
+  /**
+   * Completes the activity setting status to COMPLETED.
+   * @returns The updated Activity entity.
+   */
   complete(): Activity {
     this._status = 'COMPLETED';
     return this;
