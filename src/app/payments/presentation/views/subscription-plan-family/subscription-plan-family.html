@@ -1,5 +1,11 @@
 <div class="page-container">
 
+  <div class="back-btn-container">
+    <button class="back-btn" (click)="goBack()">
+      <i class="fa-solid fa-arrow-left"></i> Back to Plans
+    </button>
+  </div>
+
   <div class="plan-card">
     <h1 class="plan-title">Family Plan</h1>
 
@@ -8,36 +14,33 @@
       with peace of mind and full visibility.
     </p>
 
-    <div class="discount">Save 15% annually</div>
+    <div style="text-align: center;">
+      <div class="discount">Save 15% annually</div>
+    </div>
 
-    <!-- Monthly -->
     <div class="price-box">
       <div class="plan-price">$30</div>
       <div class="plan-sub">Per month</div>
-
       <button class="button-choose" (click)="choosePlan('monthly')">
-        Choose Monthly Plan
+        Choose Monthly
       </button>
     </div>
 
-    <!-- Annual -->
     <div class="price-box">
       <div class="plan-price">$300</div>
       <div class="plan-sub">Per year</div>
-
       <button class="button-choose" (click)="choosePlan('annual')">
-        Choose Annual Plan
+        Choose Annual
       </button>
     </div>
 
-    <h3 class="features-title">Features</h3>
+    <h3 class="features-title">What's included</h3>
     <ul class="feature-list">
       <li>One family account with multiple caregiver access.</li>
       <li>Medication reminders + logging.</li>
       <li>Detailed daily care history.</li>
       <li>Mobile & web access.</li>
       <li>Caregiver notes & schedule viewing.</li>
-      <li>Email support (48–72h).</li>
     </ul>
 
   </div>
