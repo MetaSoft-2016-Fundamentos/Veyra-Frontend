@@ -28,10 +28,13 @@ export const environment = {
   platformProviderNursingHomeResidentsEndpointPath: '/nursing-homes/{nursingHomeId}/residents',
   platformProviderNursingHomeStaffEndpointPath: '/nursing-homes/{nursingHomeId}/staff',
   platformProviderNursingHomeRoomsEndpointPath: '/nursing-homes/{nursingHomeId}/rooms',
+  platformProviderResidentRelativesEndpointPath: '/residents/{residentId}/relatives',
+  platformProviderNursingHomeRelativesEndpointPath: '/nursing-homes/{nursingHomeId}/relatives',
   platformProviderMedicationsEndpointPath:'/medications',
   platformProviderNursingHomesEndpointPath:'/nursing-homes',
   platformProviderResidentsEndpointPath:'/residents',
   platformProviderRoomsEndpointPath: '/rooms',
+  platformProviderRelativesEndpointPath: '/relatives',
 
   // Profiles Bounded Context
   platformProviderBusinessProfilesEndpointPath: '/business-profiles',

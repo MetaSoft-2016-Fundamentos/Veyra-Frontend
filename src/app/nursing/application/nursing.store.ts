@@ -15,6 +15,7 @@ import { Allergy } from '../domain/model/allergy.entity';
 import {CreateAllergyCommand} from '../domain/model/create-allergy.command';
 import {Device} from '../domain/model/device.entity';
 import {VitalSign} from '../domain/model/vital-sign.entity';
+import {Relative} from '../domain/model/relative.entity';
 
 /*
 * @purpose: Manage the state of nursing homes in the application
@@ -32,6 +33,7 @@ export class NursingStore {
   private readonly _allergiesSignal = signal<Allergy[]>([]);
   private readonly _devicesSignal = signal<Device[]>([]);
   private readonly _vitalSignsSignal = signal<VitalSign[]>([]);
+  private readonly _relativeSignal = signal<Relative[]>([]);
   private readonly _loadingSignal=signal<boolean>(false);
   private readonly _errorSignal=signal<string|null>(null);
   readonly loading=this._loadingSignal.asReadonly();
@@ -42,6 +44,7 @@ export class NursingStore {
   readonly residents = this._residentSignal.asReadonly();
   readonly rooms = this._roomsSignal.asReadonly();
   readonly vitalSigns = this._vitalSignsSignal.asReadonly();
+  readonly relative = this._relativeSignal.asReadonly();
 
   constructor(private nursingApi: NursingApi) {}
 

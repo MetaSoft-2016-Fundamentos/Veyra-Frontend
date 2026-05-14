@@ -28,6 +28,10 @@ import {DevicesApiEndpoint} from './devices-api-endpoint';
 import {Device} from '../domain/model/device.entity';
 import {VitalSign} from '../domain/model/vital-sign.entity';
 import {VitalSignsApiEndpoint} from './vital-signs-api-endpoint';
+import {RelativesApiEndpoint} from './relatives-api-endpoint';
+import {CreateRelativeCommand} from '../domain/model/create-relative.command';
+import {Relative} from '../domain/model/relative.entity';
+import {CreateRelativeCommandApiEndpoint} from './create-relative-command-api-endpoint';
 
 /**
  * @purpose: Service to interact with the Nursing Home API
@@ -54,6 +58,8 @@ export class NursingApi extends BaseApi{
   private readonly _createAllergyCommandsApiEndpoint: CreateAllergyCommandsApiEndpoint;
   private readonly _devicesApiEndpoint: DevicesApiEndpoint;
   private readonly _vitalSignsApiEndpoint: VitalSignsApiEndpoint;
+  private readonly _relativeApiEndpoint: RelativesApiEndpoint;
+  private readonly _createRelativeCommandsApiEndpoint: CreateRelativeCommandApiEndpoint;
 
   /**
    * Initializes the Resident, Room and Nursing Home API service with the required HTTP client.
@@ -74,6 +80,9 @@ export class NursingApi extends BaseApi{
     this._createAllergyCommandsApiEndpoint = new CreateAllergyCommandsApiEndpoint(http);
     this._devicesApiEndpoint = new DevicesApiEndpoint(http);
     this._vitalSignsApiEndpoint = new VitalSignsApiEndpoint(http);
+    this._relativeApiEndpoint = new RelativesApiEndpoint(http);
+    this._createRelativeCommandsApiEndpoint = new CreateRelativeCommandApiEndpoint(http);
+
   }
 
   createNursingHome(administratorId: number, createNursingHomeCommand: CreateNursingHomeCommand):Observable<NursingHome>{
@@ -165,4 +174,13 @@ export class NursingApi extends BaseApi{
   getVitalSigns(residentId: number): Observable<VitalSign[]> {
     return this._vitalSignsApiEndpoint.getAll(residentId);
   }
+
+  createRelative(residentId: number, createRelativeCommand: CreateRelativeCommand): Observable<Relative> {
+    return this._createRelativeCommandsApiEndpoint.create(residentId, createRelativeCommand);
+  }
+
+  getRelativesByNursingHomeId(nursingHomeId: number): Observable<Relative[]> {
+    return this._relativeApiEndpoint.getRelativesByNursingHomeId(nursingHomeId);
+  }
+
 }
