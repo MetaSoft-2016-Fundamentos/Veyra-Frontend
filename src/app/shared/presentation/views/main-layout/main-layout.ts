@@ -10,6 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { LanguageSwitcher } from '../../components/language-switcher/language-switcher';
 import { AuthenticationSection } from '../../../../iam/presentation/components/authentication-section/authentication-section';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-main-layout',
@@ -30,6 +31,9 @@ import { AuthenticationSection } from '../../../../iam/presentation/components/a
   styleUrls: ['./main-layout.css']
 })
 export class MainLayout {
+  /** Controlado por `environment.showIamToolbar` (desactivado en dev mientras el login está comentado). */
+  protected readonly showIamToolbar = environment.showIamToolbar;
+
   @ViewChild(MatSidenav) drawer!: MatSidenav;
   sidenavMode: 'side' | 'over' = 'side';
   sidenavOpened = true;

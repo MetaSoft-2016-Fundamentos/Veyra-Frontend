@@ -1,5 +1,7 @@
 export const environment = {
   production: true,
+  /** En producción suele mostrarse la sección IAM del toolbar cuando reactive el login real. */
+  showIamToolbar: true,
   platformProviderApiBaseUrl: 'http://localhost:8080/api/v1',
 
   // Analytics Bounded Context

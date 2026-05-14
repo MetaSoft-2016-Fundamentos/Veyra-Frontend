@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SignInCommand } from '../../../domain/model/sign-in.command';
 import { IamStore } from '../../../application/iam.store';
 import { Toolbar } from '../../../../shared/presentation/components/toolbar/toolbar';
 
@@ -32,10 +31,16 @@ export class SignInForm {
   hidePassword = true;
 
   /**
-   * Handles form submission for sign-in.
+   * Lógica de login real **desactivada por ahora** (no se llama al API ni a `store.signIn`).
+   * Solo navega al dashboard para desarrollo. Efecto secundario: `IamStore.isSignedIn` sigue en
+   * `false` → en `MainLayout` el toolbar muestra SIGN-IN / CREATE USER aunque entres a rutas internas.
+   *
+   * Cuando vuelvas a necesitar IAM: descomenta el bloque `store.signIn(...)` y quita el
+   * `router.navigate` directo. Importa de nuevo `SignInCommand` si lo quitaste del import.
+   *
+   * Referencia — sesión expirada / snackbar / bloqueo: ver comentarios en `iam.interceptor.ts` y `iam.store.ts`.
    */
   onSubmit(): void {
-    
     /*
     if (this.form.valid) {
       const signInCommand = new SignInCommand({
@@ -46,10 +51,13 @@ export class SignInForm {
     } else {
       this.markFormGroupTouched(this.form);
     }
-      */
+    */
 
-    this.router.navigate(['/analytics/dashboard']).then();
-
+    if (!this.form.valid) {
+      this.markFormGroupTouched(this.form);
+      return;
+    }
+    void this.router.navigate(['/analytics/dashboard']);
   }
 
   /**

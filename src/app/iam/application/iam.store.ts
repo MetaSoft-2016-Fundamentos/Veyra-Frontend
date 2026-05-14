@@ -6,6 +6,20 @@ import { IamApi } from '../infrastructure/iam-api';
 import { SignUpCommand } from '../domain/model/sign-up.command';
 import { CreateAdministratorCommand } from '../domain/model/create-administrator.command';
 
+/**
+ * Estado de sesión en memoria (`isSignedIn`, usuario) + token en `localStorage` tras login exitoso.
+ * `currentToken` solo expone el token si `isSignedIn` es true (tras F5 con token guardado pero
+ * señal en false, la UI cree que no hay sesión y el interceptor no envía Bearer — conviene
+ * rehidratar en el constructor o con `APP_INITIALIZER`).
+ *
+ * MEJORA — Expiración / 401 (coordinar con `authenticationInterceptor`):
+ * - Añadir `readonly sessionExpired = signal(false)` (o `overlayVisible`).
+ * - Método `handleSessionExpired(router: Router)`: limpiar storage y señales como `signOut`,
+ *   poner `sessionExpired.set(true)`, abrir `MatSnackBar`, `router.navigate(['/iam/sign-in'])`.
+ * - En la plantilla global o `MainLayout`, `@if (store.sessionExpired()) { <div class="session-lock">…</div> }`
+ *   con posición fixed, fondo semitransparente y `pointer-events: auto` para bloquear la interacción
+ *   hasta que el usuario vaya a login (o `sessionExpired.set(false)` solo tras login exitoso).
+ */
 @Injectable({ providedIn: 'root' })
 export class IamStore {
   private readonly _loadingSignal = signal<boolean>(false);

@@ -1,5 +1,7 @@
 export const environment = {
   production: false,
+  /** Si es false, el `MainLayout` no muestra SIGN-IN / CREATE USER (IAM desactivado en front). */
+  showIamToolbar: false,
   platformProviderApiBaseUrl: 'http://localhost:8080/api/v1',
 
   // Analytics Bounded Context
