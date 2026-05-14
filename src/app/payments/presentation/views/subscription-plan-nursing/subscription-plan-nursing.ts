@@ -14,7 +14,10 @@ export class SubscriptionPlanNursing {
   constructor(private router: Router) {}
 
   choosePlan(cycle: 'monthly' | 'annual') {
-    // Navega a la ruta dinámica: /payments/checkout/nursing-home/monthly (o annual)
     this.router.navigate(['/payments/checkout', 'nursing-home', cycle]);
+  }
+
+  goBack() {
+    this.router.navigate(['/payments/choose']);
   }
 }

@@ -107,3 +107,33 @@
 .feature-list li {
   margin-bottom: 10px;
 }
+
+/* =========================================
+   Estilos para el botón de Back to Plans
+   ========================================= */
+
+.back-btn-container {
+  width: 92%;
+  max-width: 500px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #005baa; /* Azul que combina con tu plan-title */
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.back-btn:hover {
+  color: #12a18d; /* Al pasar el mouse cambia al verde de tu botón principal */
+}

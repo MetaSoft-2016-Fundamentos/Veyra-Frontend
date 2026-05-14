@@ -1,5 +1,11 @@
 <div class="page-container">
 
+  <div class="back-btn-container">
+    <button class="back-btn" (click)="goBack()">
+      <i class="fa-solid fa-arrow-left"></i> Back to Plans
+    </button>
+  </div>
+
   <div class="plan-card">
     <h1 class="plan-title">Nursing Home Plan</h1>
 
@@ -8,9 +14,10 @@
       improve communication, and elevate their standard of care.
     </p>
 
-    <div class="discount">Save 15% annually</div>
+    <div style="text-align: center;">
+      <div class="discount">Save 15% annually</div>
+    </div>
 
-    <!-- Monthly -->
     <div class="price-box">
       <div class="plan-price">$300</div>
       <div class="plan-sub">Per month</div>
@@ -20,7 +27,6 @@
       </button>
     </div>
 
-    <!-- Annual -->
     <div class="price-box">
       <div class="plan-price">$3000</div>
       <div class="plan-sub">Per year</div>
