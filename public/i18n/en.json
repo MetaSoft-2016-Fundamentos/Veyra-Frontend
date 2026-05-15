@@ -53,7 +53,9 @@
     "user-menu": "Account menu",
     "role": {
       "admin-support": "Administrative support",
-      "user": "User"
+      "admin-support-panel": "Administrative support",
+      "user": "User",
+      "user-panel": "User"
     }
   },
   "welcome": {

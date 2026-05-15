@@ -53,7 +53,9 @@
     "user-menu": "Menú de cuenta",
     "role": {
       "admin-support": "Soporte administrativo",
-      "user": "Usuario"
+      "admin-support-panel": "Soporte Administrativo",
+      "user": "Usuario",
+      "user-panel": "Usuario"
     }
   },
   "welcome": {

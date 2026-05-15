@@ -1,7 +1,12 @@
 export const environment = {
   production: false,
-  /** Si es false, el `MainLayout` no muestra SIGN-IN / CREATE USER (IAM desactivado en front). */
+  /** Si es false, el `MainLayout` no muestra botones SIGN-IN / registro en toolbar; con sesión activa sí se muestra el menú de cuenta. */
   showIamToolbar: false,
+  /**
+   * Si no hay sesión válida en `localStorage`, `IamStore` aplica usuario/roles por defecto (solo desarrollo).
+   * Pon en `false` para probar como invitado sin menú de cuenta.
+   */
+  fallbackDevUserSession: true,
   platformProviderApiBaseUrl: 'http://localhost:8080/api/v1',
 
   // Analytics Bounded Context

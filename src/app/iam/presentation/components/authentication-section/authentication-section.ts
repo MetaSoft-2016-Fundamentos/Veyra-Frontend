@@ -18,7 +18,7 @@ export class AuthenticationSection {
   private readonly router = inject(Router);
   protected readonly store = inject(IamStore);
 
-  /** Clave i18n del subtítulo (rol) bajo el nombre de usuario. */
+  /** Subtítulo rol (misma clave en disparador y cabecera del menú desplegable). */
   protected get roleSubtitleKey(): string {
     const roles = this.store.currentRoles();
     if (roles.includes('ROLE_ADMIN')) {

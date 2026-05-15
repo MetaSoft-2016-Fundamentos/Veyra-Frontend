@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { IamStore } from '../../../application/iam.store';
 import { Toolbar } from '../../../../shared/presentation/components/toolbar/toolbar';
+import { environment } from '../../../../../environments/environment';
 
 /**
  * Component for user sign-in functionality.
@@ -31,14 +32,9 @@ export class SignInForm {
   hidePassword = true;
 
   /**
-   * Lógica de login real **desactivada por ahora** (no se llama al API ni a `store.signIn`).
-   * Solo navega al dashboard para desarrollo. Efecto secundario: `IamStore.isSignedIn` sigue en
-   * `false` → en `MainLayout` el toolbar muestra SIGN-IN / CREATE USER aunque entres a rutas internas.
-   *
-   * Cuando vuelvas a necesitar IAM: descomenta el bloque `store.signIn(...)` y quita el
-   * `router.navigate` directo. Importa de nuevo `SignInCommand` si lo quitaste del import.
-   *
-   * Referencia — sesión expirada / snackbar / bloqueo: ver comentarios en `iam.interceptor.ts` y `iam.store.ts`.
+   * Login real: descomenta `store.signIn(...)` y quita el stub.
+   * En no producción, si el formulario es válido, actualiza `localStorage` y rehidrata el store
+   * (nombre del formulario; si no pasas por aquí, `IamStore` puede aplicar usuario por defecto en dev).
    */
   onSubmit(): void {
     /*
@@ -56,6 +52,14 @@ export class SignInForm {
     if (!this.form.valid) {
       this.markFormGroupTouched(this.form);
       return;
+    }
+    if (!environment.production) {
+      const username = this.form.value.username!;
+      localStorage.setItem('token', 'dev');
+      localStorage.setItem('userId', '1');
+      localStorage.setItem('username', username);
+      localStorage.setItem('userRoles', JSON.stringify(['ROLE_USER']));
+      this.store.rehydrateSessionFromStorage();
     }
     void this.router.navigate(['/analytics/dashboard']);
   }

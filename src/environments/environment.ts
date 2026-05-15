@@ -2,6 +2,8 @@ export const environment = {
   production: true,
   /** En producción suele mostrarse la sección IAM del toolbar cuando reactive el login real. */
   showIamToolbar: true,
+  /** Nunca aplicar sesión simulada en producción. */
+  fallbackDevUserSession: false,
   platformProviderApiBaseUrl: 'http://localhost:8080/api/v1',
 
   // Analytics Bounded Context

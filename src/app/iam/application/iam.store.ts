@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { IamApi } from '../infrastructure/iam-api';
 import { SignUpCommand } from '../domain/model/sign-up.command';
 import { CreateAdministratorCommand } from '../domain/model/create-administrator.command';
+import { environment } from '../../../environments/environment';
 
 /**
  * Estado de sesión en memoria (`isSignedIn`, usuario, roles) + token en `localStorage` tras login.
@@ -46,10 +47,28 @@ export class IamStore {
     this.currentUserIdSignal.set(null);
     this.currentRolesSignal.set([]);
     this.rehydrateSessionFromStorage();
+    if (environment.fallbackDevUserSession && !this.isSignedInSignal()) {
+      this.applyDefaultDevUserSession();
+    }
   }
 
-  /** Restaura sesión en memoria si hay token guardado (p. ej. tras F5). */
-  private rehydrateSessionFromStorage(): void {
+  /** Valores por defecto solo desarrollo, si no hay login real ni datos en storage. */
+  private applyDefaultDevUserSession(): void {
+    const username = 'Usuario';
+    const userId = '1';
+    const roles = ['ROLE_USER'] as string[];
+    localStorage.setItem('token', 'dev');
+    localStorage.setItem('userId', userId);
+    localStorage.setItem('username', username);
+    localStorage.setItem('userRoles', JSON.stringify(roles));
+    this.isSignedInSignal.set(true);
+    this.currentUsernameSignal.set(username);
+    this.currentUserIdSignal.set(Number(userId));
+    this.currentRolesSignal.set(roles);
+  }
+
+  /** Restaura sesión en memoria si hay token guardado (p. ej. tras F5 o login stub). */
+  rehydrateSessionFromStorage(): void {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const userId = localStorage.getItem('userId');

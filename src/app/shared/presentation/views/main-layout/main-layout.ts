@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, inject, signal, ViewChild } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MatSidenav, MatSidenavContainer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -10,6 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { LanguageSwitcher } from '../../components/language-switcher/language-switcher';
 import { AuthenticationSection } from '../../../../iam/presentation/components/authentication-section/authentication-section';
+import { IamStore } from '../../../../iam/application/iam.store';
 import { environment } from '../../../../../environments/environment';
 
 @Component({
@@ -32,8 +33,15 @@ import { environment } from '../../../../../environments/environment';
   styleUrls: ['./main-layout.css']
 })
 export class MainLayout implements AfterViewInit {
-  /** Controlado por `environment.showIamToolbar` (desactivado en dev mientras el login está comentado). */
+  private readonly iamStore = inject(IamStore);
+
+  /** Si es true, toolbar muestra IAM completo (login/registro). Si es false, solo con sesión activa (perfil / salir). */
   protected readonly showIamToolbar = environment.showIamToolbar;
+
+  /** Muestra `app-authentication-section` cuando el entorno habilita IAM o el usuario ya inició sesión. */
+  protected showAuthenticationInToolbar(): boolean {
+    return this.showIamToolbar || this.iamStore.isSignedIn();
+  }
 
   @ViewChild(MatSidenav) drawer!: MatSidenav;
   @ViewChild('shell', { read: MatSidenavContainer }) private shell?: MatSidenavContainer;

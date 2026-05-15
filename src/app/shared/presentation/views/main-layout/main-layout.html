@@ -115,7 +115,7 @@
     <mat-sidenav-content class="main-with-toolbar">
       <mat-toolbar class="toolbar">
         <span class="spacer"></span>
-        @if (showIamToolbar) {
+        @if (showAuthenticationInToolbar()) {
           <app-authentication-section/>
         }
         <app-language-switcher></app-language-switcher>
