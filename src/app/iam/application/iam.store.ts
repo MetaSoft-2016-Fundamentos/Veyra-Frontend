@@ -117,7 +117,6 @@ export class IamStore {
   }
 
   signIn(signInCommand: SignInCommand, router: Router) {
-    console.log(signInCommand);
     this.iamApi.signIn(signInCommand).subscribe({
       next: (signInResource) => {
         localStorage.setItem('token', signInResource.token);

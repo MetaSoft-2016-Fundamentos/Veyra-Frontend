@@ -37,7 +37,6 @@ export abstract class BaseApiEndpoint<
   getAll() {
     return this.http.get<TResponse | TResource[]>(this.endpointUrl).pipe(
       map(response => {
-        console.log(response);
         if (Array.isArray(response)) {
           return response.map(resource => this.assembler.toEntityFromResource(resource));
         }
