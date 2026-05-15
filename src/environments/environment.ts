@@ -36,7 +36,7 @@ export const environment = {
   platformProviderResidentsEndpointPath:'/residents',
   platformProviderRoomsEndpointPath: '/rooms',
   platformProviderRelativesEndpointPath: '/relatives',
-
+  platformProviderMonitoringResidentsEndpointPath: '/nursing-homes/{nursingHomeId}/doctors/{doctorId}/monitoring-residents',
 
   // Profiles Bounded Context
   platformProviderBusinessProfilesEndpointPath: '/business-profiles',
