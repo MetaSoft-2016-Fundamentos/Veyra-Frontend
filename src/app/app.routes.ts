@@ -13,6 +13,8 @@ const hcmRoutes = () =>
   import('./hcm/presentation/hcm-routes').then(m => m.hcmRoutes);
 const paymentsRoutes = () =>
   import('./payments/presentation/payments-routes').then(m => m.paymentsRoutes);
+const trackingRoutes = () =>
+  import('./tracking/presentation/tracking-routes').then(m => m.trackingRoutes);
 
 const baseTitle = 'Veyra';
 export const routes: Routes = [
@@ -22,6 +24,7 @@ export const routes: Routes = [
   { path: 'nursing',     loadChildren: nursingRoutes },
   { path: 'hcm',         loadChildren: hcmRoutes },
   { path: 'payments',    loadChildren: paymentsRoutes },
+  { path: 'tracking',    loadChildren: trackingRoutes },
   { path: '',            redirectTo: '/home',         pathMatch:'full' },
   { path: '**',          loadComponent: pageNotFound, title:`Page Not Found | ${baseTitle}`}
 ];

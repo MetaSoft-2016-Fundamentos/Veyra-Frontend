@@ -1,11 +1,13 @@
 export const environment = {
-  production: false,
+  production: true,
   platformProviderApiBaseUrl: 'http://localhost:8080/api/v1',
+
 
   // Analytics Bounded Context
   platformProviderAnalyticsStaffTerminationsEndpointPath: '/nursing-homes/{nursingHomeId}/analytics/staff-terminations',
   platformProviderAnalyticsStaffHiresEndpointPath: '/nursing-homes/{nursingHomeId}/analytics/staff-hires',
   platformProviderAnalyticsResidentsAdmissionsEndpointPath: '/nursing-homes/{nursingHomeId}/analytics/residents-admissions',
+
 
   // Hcm Bounded Context
   platformProviderContractsEndpointPath: '/contracts',
@@ -13,10 +15,12 @@ export const environment = {
   platformProviderStaffMemberContractsEndpointPath:'/staff/{staffMemberId}/contracts',
   platformProviderStaffMemberContractStatusEndpointPath:'/staff/{staffMemberId}/contracts/{contractId}',
 
+
   //IAM Bounded Context
   platformProviderSignInEndpointPath: '/authentication/sign-in',
   platformProviderSignUpEndpointPath: '/authentication/sign-up',
   platformProviderAdministratorsEndpointPath: '/administrators',
+
 
   // Nursing Bounded Context
   platformProviderResidentVitalSigsEndpointPath: '/resident/{residentId}/vital-signs',
@@ -33,7 +37,15 @@ export const environment = {
   platformProviderResidentsEndpointPath:'/residents',
   platformProviderRoomsEndpointPath: '/rooms',
 
+
   // Profiles Bounded Context
   platformProviderBusinessProfilesEndpointPath: '/business-profiles',
   platformProviderPersonProfilesEndpointPath: '/person-profiles',
+
+
+  // Tracking Bounded Context
+  platformProviderTrackingDevicesEndpointPath: '/nursing-homes/{nursingHomeId}/tracking-devices',
 };
+
+
+
