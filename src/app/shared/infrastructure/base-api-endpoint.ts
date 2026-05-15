@@ -13,6 +13,7 @@ import {ErrorHandlingEnabledBaseType} from './error-handling-enabled-base-type';
  * @template TResponse - The response type extending BaseResponse.
  * @template TAssembler - The assembler type extending BaseAssembler.
  */
+
 export abstract class BaseApiEndpoint<
   TEntity extends BaseEntity,
   TResource extends BaseResource,
