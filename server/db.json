@@ -22,5 +22,63 @@
   ],
   "medications": [
 
+  ],
+  "tracking-devices": [
+    {
+      "id": 1,
+      "nursingHomeId": 1,
+      "deviceId": "BAND-001",
+      "deviceType": "VITAL_SIGNS",
+      "assignedBy": "SYSTEM_SEED",
+      "assignedAt": "2026-03-20T12:44:05.576780",
+      "status": "ACTIVE"
+    },
+    {
+      "id": 2,
+      "nursingHomeId": 1,
+      "deviceId": "BAND-002",
+      "deviceType": "VITAL_SIGNS",
+      "assignedBy": "SYSTEM_SEED",
+      "assignedAt": "2026-03-20T12:44:05.576780",
+      "status": "ACTIVE"
+    },
+    {
+      "id": 3,
+      "nursingHomeId": 1,
+      "deviceId": "BAND-004",
+      "deviceType": "VITAL_SIGNS",
+      "assignedBy": "SYSTEM_SEED",
+      "assignedAt": "2026-03-20T12:44:05.576780",
+      "status": "ACTIVE"
+    },
+    {
+      "id": 4,
+      "nursingHomeId": 1,
+      "deviceId": "BAND-006",
+      "deviceType": "VITAL_SIGNS",
+      "assignedBy": "SYSTEM_SEED",
+      "assignedAt": "2026-03-20T12:44:05.576780",
+      "status": "ACTIVE"
+    },
+    {
+      "id": 5,
+      "nursingHomeId": 1,
+      "deviceId": "LOC-8819",
+      "deviceType": "GPS",
+      "assignedBy": "Dr. Mendoza",
+      "assignedAt": "2026-04-15T09:12:33.102340",
+      "status": "INACTIVE"
+    },
+    {
+      "id": 6,
+      "nursingHomeId": 1,
+      "deviceId": "LOC-9022",
+      "deviceType": "GPS",
+      "assignedBy": "Enf. Patricia Gómez",
+      "assignedAt": "2026-05-10T14:20:11.990120",
+      "status": "LOW_BATTERY"
+    }
   ]
 }
+
+
