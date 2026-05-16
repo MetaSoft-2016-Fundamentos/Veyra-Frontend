@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  platformProviderApiBaseUrl: 'http://localhost:8080/api/v1',
+  platformProviderApiBaseUrl: 'http://veyra-backend-production-6e42.up.railway.app/api/v1',
 
   // Analytics Bounded Context
   platformProviderAnalyticsStaffTerminationsEndpointPath: '/nursing-homes/{nursingHomeId}/analytics/staff-terminations',
