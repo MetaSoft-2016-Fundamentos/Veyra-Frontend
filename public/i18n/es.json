@@ -47,7 +47,8 @@
     "go-home": "Ir al inicio"
   },
   "toolbar": {
-    "logoAlt": "logo"
+    "logoAlt": "logo",
+    "back": "Volver"
   },
   "iam": {
     "profile": "Perfil",

@@ -6,6 +6,10 @@ import { IamApi } from '../infrastructure/iam-api';
 import { SignUpCommand } from '../domain/model/sign-up.command';
 import { CreateAdministratorCommand } from '../domain/model/create-administrator.command';
 import { environment } from '../../../environments/environment';
+import { appNav } from '../../shared/routing/app-nav';
+import { analyticsNav } from '../../analytics/presentation/analytics-routes';
+import { iamNav } from '../presentation/iam.routes';
+import { nursingNav } from '../../nursing/presentation/nursing-routes';
 
 /**
  * Estado de sesión en memoria (`isSignedIn`, usuario, roles) + token en `localStorage` tras login.
@@ -109,9 +113,7 @@ export class IamStore {
         this.currentUsernameSignal.set(null);
         this.currentUserIdSignal.set(null);
         this.currentRolesSignal.set([]);
-        router.navigate(['/iam/sign-up'], {
-          queryParams: { role: 'admin' }
-        }).then();
+        void router.navigate(iamNav.signUp(), { queryParams: { role: 'admin' } });
       }
     })
   }
@@ -130,9 +132,9 @@ export class IamStore {
         this.currentRolesSignal.set(signInResource.roles ?? []);
 
         if(signInResource.roles.includes("ROLE_ADMIN")) {
-          router.navigate(['/nursing/nursing-homes/new']).then();
+          void router.navigate(nursingNav.nursingHomeNew());
         } else {
-          router.navigate(['/analytics/dashboard']).then();
+          void router.navigate(analyticsNav.dashboard());
         }
       },
       error: (err) => {
@@ -158,7 +160,7 @@ export class IamStore {
         this.currentUsernameSignal.set(null);
         this.currentUserIdSignal.set(null);
         this.currentRolesSignal.set([]);
-        router.navigate(['/iam/sign-up']).then();
+        void router.navigate(iamNav.signUp());
       }
     });
   }
@@ -173,6 +175,6 @@ export class IamStore {
     this.currentUsernameSignal.set(null);
     this.currentUserIdSignal.set(null);
     this.currentRolesSignal.set([]);
-    router.navigate(['/home']).then();
+    void router.navigate(appNav.home);
   }
 }

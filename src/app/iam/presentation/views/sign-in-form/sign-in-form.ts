@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { iamNav } from '../../iam.routes';
+import { analyticsNav } from '../../../../analytics/presentation/analytics-routes';
 import { IamStore } from '../../../application/iam.store';
 import { Toolbar } from '../../../../shared/presentation/components/toolbar/toolbar';
 import { environment } from '../../../../../environments/environment';
@@ -61,7 +63,7 @@ export class SignInForm {
       localStorage.setItem('userRoles', JSON.stringify(['ROLE_USER']));
       this.store.rehydrateSessionFromStorage();
     }
-    void this.router.navigate(['/analytics/dashboard']);
+    void this.router.navigate(analyticsNav.dashboard());
   }
 
   /**
@@ -110,14 +112,14 @@ export class SignInForm {
   }
 
   performSignUpUser(): void {
-    this.router.navigate(['/iam/sign-up'], {
+    void this.router.navigate(iamNav.signUp(), {
       queryParams: { role: 'user' }
-    }).then();
+    });
   }
 
   performSignUpAdmin(): void {
-    this.router.navigate(['/iam/sign-up'], {
+    void this.router.navigate(iamNav.signUp(), {
       queryParams: { role: 'admin' }
-    }).then();
+    });
   }
 }

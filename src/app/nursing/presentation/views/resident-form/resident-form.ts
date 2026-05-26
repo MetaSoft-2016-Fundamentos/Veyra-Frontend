@@ -1,6 +1,7 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { nursingNav } from '../../nursing-routes';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
@@ -124,7 +125,7 @@ export class ResidentForm {
       this.store.createResidentInNursingHome(this.nursingHomeId, createResidentCommand);
     }
 
-    this.router.navigate(['/nursing/residents']).then();
+    void this.router.navigate(nursingNav.residents());
   }
 
   private formatDateToISO(date: Date): string {
@@ -150,6 +151,6 @@ export class ResidentForm {
   }
 
   onCancel(): void {
-    this.router.navigate(['/nursing/residents']).then();
+    void this.router.navigate(nursingNav.residents());
   }
 }
