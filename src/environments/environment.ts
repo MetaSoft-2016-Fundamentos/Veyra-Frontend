@@ -1,6 +1,10 @@
 export const environment = {
   production: true,
-  platformProviderApiBaseUrl: 'http://localhost:8080/api/v1',
+  /** En producción suele mostrarse la sección IAM del toolbar cuando reactive el login real. */
+  showIamToolbar: true,
+  /** Nunca aplicar sesión simulada en producción. */
+  fallbackDevUserSession: false,
+  platformProviderApiBaseUrl: 'https://myfake-api-production.up.railway.app',
 
   // Analytics Bounded Context
   platformProviderAnalyticsStaffTerminationsEndpointPath: '/nursing-homes/{nursingHomeId}/analytics/staff-terminations',
@@ -28,12 +32,23 @@ export const environment = {
   platformProviderNursingHomeResidentsEndpointPath: '/nursing-homes/{nursingHomeId}/residents',
   platformProviderNursingHomeStaffEndpointPath: '/nursing-homes/{nursingHomeId}/staff',
   platformProviderNursingHomeRoomsEndpointPath: '/nursing-homes/{nursingHomeId}/rooms',
+  platformProviderResidentRelativesEndpointPath: '/residents/{residentId}/relatives',
+  platformProviderNursingHomeRelativesEndpointPath: '/nursing-homes/{nursingHomeId}/relatives',
   platformProviderMedicationsEndpointPath:'/medications',
   platformProviderNursingHomesEndpointPath:'/nursing-homes',
   platformProviderResidentsEndpointPath:'/residents',
   platformProviderRoomsEndpointPath: '/rooms',
+  platformProviderRelativesEndpointPath: '/relatives',
+  platformProviderMonitoringResidentsEndpointPath: '/nursing-homes/{nursingHomeId}/doctors/{doctorId}/monitoring-residents',
 
   // Profiles Bounded Context
   platformProviderBusinessProfilesEndpointPath: '/business-profiles',
   platformProviderPersonProfilesEndpointPath: '/person-profiles',
+
+  // Activities Bounded Context
+  platformProviderActivitiesEndpointPath: '/activities',
+
+  // Alerts Bounded Context
+  platformProviderAlertsEndpointPath: '/alerts',
 };
+
