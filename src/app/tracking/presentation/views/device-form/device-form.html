@@ -1,0 +1,20 @@
+<h1 class="title">{{ (isEdit ? 'device.edit-title' : 'device.new-title') | translate }}</h1>
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <mat-form-field>
+    <mat-label>{{ 'device.type' | translate }}</mat-label>
+    <mat-select formControlName="deviceType" required>
+      @for (type of deviceTypes; track type) {
+        <mat-option [value]="type">{{ type }}</mat-option>
+      }
+    </mat-select>
+    @if (form.get('deviceType')?.touched && form.get('deviceType')!.hasError('required')) {
+      <mat-error>{{ 'device.error.type-required' | translate }}</mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+    {{ (isEdit ? 'device.update' : 'device.create') | translate }}
+  </button>
+
+</form>
