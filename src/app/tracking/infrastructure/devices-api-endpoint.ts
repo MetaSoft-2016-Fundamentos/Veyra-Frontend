@@ -1,30 +1,27 @@
-import { HttpClient } from '@angular/common/http';
-import { catchError, map, Observable } from 'rxjs';
-import { ErrorHandlingEnabledBaseType } from '../../shared/infrastructure/error-handling-enabled-base-type';
 import { environment } from '../../../environments/environment';
 import { Device } from '../domain/model/device.entity';
 import { DeviceAssembler } from './device-assembler';
-import { DeviceResource } from './devices-response';
+import {DeviceResource, DevicesResponse} from './devices-response';
+import {CreateDeviceRequest} from './device.request';
+import {BaseApiEndpoint} from '../../shared/infrastructure/base-api-endpoint';
+import {catchError, map, Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
-const devicesEndpointTemplate = `${environment.platformProviderApiBaseUrl}${environment.platformProviderTrackingDevicesEndpointPath}`;
+const deviceEndpointUrl = `${environment.platformProviderApiBaseUrl}${environment.platformProviderNursingHomesEndpointPath}`;
 
-export class DevicesApiEndpoint extends ErrorHandlingEnabledBaseType {
-  private readonly assembler = new DeviceAssembler();
+export class DevicesApiEndpoint extends BaseApiEndpoint<Device, DeviceResource, DevicesResponse, DeviceAssembler> {
 
-  constructor(private http: HttpClient) {
-    super();
+constructor(http:HttpClient) {
+  super(http,deviceEndpointUrl, new DeviceAssembler());
+}
+
+  getDevices(nursingHomeId:number):Observable<Device[]>{
+  return this.http.get<DevicesResponse>(`${this.endpointUrl}/${nursingHomeId}/devices`).pipe
+  (map((response)=>this.assembler.toEntitiesFromResponse(response)),catchError(this.handleError(`Failed to fetch devices for nursing home ${nursingHomeId}`)),);
+   }
+  createDevice(nursingHomeId:number,request:CreateDeviceRequest):Observable<Device>{
+    return this.http.post<DeviceResource>(`${this.endpointUrl}/${nursingHomeId}/devices`, request).pipe
+    (map((resource)=>this.assembler.toEntityFromResource(resource)),catchError(this.handleError(`Failed to register device for nursing home ${nursingHomeId}`)),);
   }
 
-  getAll(nursingHomeId: number): Observable<Device[]> {
-    const url = devicesEndpointTemplate.replace('{nursingHomeId}', nursingHomeId.toString());
-    return this.http.get<DeviceResource[]>(url).pipe(
-      map(response => {
-        if (Array.isArray(response)) {
-          return response.map(r => this.assembler.toEntityFromResource(r));
-        }
-        return this.assembler.toEntitiesFromResponse(response);
-      }),
-      catchError(this.handleError('Failed to fetch tracking devices'))
-    );
-  }
 }

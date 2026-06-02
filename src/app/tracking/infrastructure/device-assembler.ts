@@ -1,33 +1,29 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { Device } from '../domain/model/device.entity';
 import { DeviceResource, DevicesResponse } from './devices-response';
-import { DeviceStatus } from '../domain/model/device-status.enum';
-import { DeviceType } from '../domain/model/device-type.enum';
 
 export class DeviceAssembler implements BaseAssembler<Device, DeviceResource, DevicesResponse> {
   toEntitiesFromResponse(response: DevicesResponse): Device[] {
-    return response.device.map(r => this.toEntityFromResource(r));
+    return response.devices.map(r => this.toEntityFromResource(r as DeviceResource));
   }
 
   toEntityFromResource(resource: DeviceResource): Device {
     return new Device({
       id: resource.id,
-      deviceId: resource.deviceId,
-      deviceType: resource.deviceType as DeviceType,
-      assignedBy: resource.assignedBy,
-      assignedAt: resource.assignedAt,
-      status: resource.status as DeviceStatus
+      nursingHomeId:resource.nursingHomeId,
+      deviceType: resource.deviceType,
+       status:resource.status,
+      residentId:resource.residentId,
     });
   }
 
   toResourceFromEntity(entity: Device): DeviceResource {
     return {
       id: entity.id,
-      deviceId: entity.deviceId,
+      nursingHomeId:entity.nursingHomeId,
       deviceType: entity.deviceType,
-      assignedBy: entity.assignedBy,
-      assignedAt: entity.assignedAt,
-      status: entity.status
+      status: entity.status,
+      residentId:entity.residentId,
     } as DeviceResource;
   }
 }

@@ -2,13 +2,12 @@ import { BaseResource, BaseResponse } from '../../shared/infrastructure/base-res
 
 export interface DeviceResource extends BaseResource {
   id: number;
-  deviceId: string;
-  deviceType: string;
-  assignedBy: string;
-  assignedAt: string;
-  status: string;
+  nursingHomeId:number;
+  deviceType:string;
+  status:string;
+  residentId:number;
 }
 
 export interface DevicesResponse extends BaseResponse {
-  device: DeviceResource[];
+  devices: DeviceResource[];
 }

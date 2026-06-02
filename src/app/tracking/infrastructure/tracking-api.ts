@@ -3,34 +3,28 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BaseApi } from '../../shared/infrastructure/base-api';
 import { Device } from '../domain/model/device.entity';
-import { CreateDeviceCommand } from '../domain/model/create-device.command';
 import { DevicesApiEndpoint } from './devices-api-endpoint';
-import { CreateDeviceCommandsApiEndpoint } from './create-device-commands-api-endpoint';
+import {CreateDeviceRequest} from './device.request';
 
 @Injectable({ providedIn: 'root' })
 export class TrackingApi extends BaseApi {
   private readonly _devicesApiEndpoint: DevicesApiEndpoint;
-  private readonly _createDeviceCommandsApiEndpoint: CreateDeviceCommandsApiEndpoint;
 
   constructor(http: HttpClient) {
     super();
     this._devicesApiEndpoint = new DevicesApiEndpoint(http);
-    this._createDeviceCommandsApiEndpoint = new CreateDeviceCommandsApiEndpoint(http);
   }
 
   getDevices(nursingHomeId: number): Observable<Device[]> {
-    return this._devicesApiEndpoint.getAll(nursingHomeId);
+    return this._devicesApiEndpoint.getDevices(nursingHomeId);
   }
 
-  createDevice(nursingHomeId: number, command: CreateDeviceCommand): Observable<Device> {
-    return this._createDeviceCommandsApiEndpoint.create(nursingHomeId, command);
+  createDevice(nursingHomeId: number, request: CreateDeviceRequest): Observable<Device> {
+    return this._devicesApiEndpoint.createDevice(nursingHomeId, request);
   }
 
-  updateDevice(id: number, command: CreateDeviceCommand): Observable<Device> {
-    return this._createDeviceCommandsApiEndpoint.update(id, command);
+  getDeviceById(id: number) {
+    return this._devicesApiEndpoint.getById(id);
   }
 
-  deleteDevice(id: number): Observable<void> {
-    return this._createDeviceCommandsApiEndpoint.delete(id);
-  }
 }
