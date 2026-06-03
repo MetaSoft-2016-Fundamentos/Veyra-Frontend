@@ -13,6 +13,7 @@ export class DeviceAssembler implements BaseAssembler<Device, DeviceResource, De
       nursingHomeId:resource.nursingHomeId,
       deviceType: resource.deviceType,
        status:resource.status,
+      macAddress:resource.macAddress,
       residentId:resource.residentId,
     });
   }
@@ -23,6 +24,7 @@ export class DeviceAssembler implements BaseAssembler<Device, DeviceResource, De
       nursingHomeId:entity.nursingHomeId,
       deviceType: entity.deviceType,
       status: entity.status,
+      macAddress: entity.macAddress,
       residentId:entity.residentId,
     } as DeviceResource;
   }

@@ -5,6 +5,9 @@ import { BaseApi } from '../../shared/infrastructure/base-api';
 import { Device } from '../domain/model/device.entity';
 import { DevicesApiEndpoint } from './devices-api-endpoint';
 import {CreateDeviceRequest} from './device.request';
+import {AssignDeviceCommand} from '../domain/model/assign-device.command';
+import {AssignDeviceResource} from './assign-device-response';
+import {UpdateDeviceCommand} from '../domain/model/update-device.command';
 
 @Injectable({ providedIn: 'root' })
 export class TrackingApi extends BaseApi {
@@ -26,5 +29,10 @@ export class TrackingApi extends BaseApi {
   getDeviceById(id: number) {
     return this._devicesApiEndpoint.getById(id);
   }
-
+  assignDevice(deviceId: number, command: AssignDeviceCommand): Observable<AssignDeviceResource> {
+    return this._devicesApiEndpoint.assignDeviceToResident(deviceId, command);
+  }
+  updateDevice(id: number, command: UpdateDeviceCommand): Observable<Device> {
+    return this._devicesApiEndpoint.updateDevice(id, command);
+  }
 }

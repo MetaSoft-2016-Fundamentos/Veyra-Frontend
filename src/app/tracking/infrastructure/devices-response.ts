@@ -5,6 +5,7 @@ export interface DeviceResource extends BaseResource {
   nursingHomeId:number;
   deviceType:string;
   status:string;
+  macAddress:string;
   residentId:number;
 }
 
