@@ -4,7 +4,7 @@ export const environment = {
   showIamToolbar: true,
   /** Nunca aplicar sesión simulada en producción. */
   fallbackDevUserSession: false,
-  platformProviderApiBaseUrl: 'https://myfake-api-production.up.railway.app',
+  platformProviderApiBaseUrl: 'https://veyra-backend.redwave-e7e23e62.canadacentral.azurecontainerapps.io/api/v1',
   platformProviderWsUrl: 'ws://localhost:8080/ws',
   // Analytics Bounded Context
   platformProviderAnalyticsStaffTerminationsEndpointPath: '/nursing-homes/{nursingHomeId}/analytics/staff-terminations',
