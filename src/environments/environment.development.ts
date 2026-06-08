@@ -1,7 +1,15 @@
 export const environment = {
   production: false,
-  platformProviderApiBaseUrl: 'http://localhost:8080/api/v1',
+  /** Si es false, el `MainLayout` no muestra botones SIGN-IN / registro en toolbar; con sesión activa sí se muestra el menú de cuenta. */
+  showIamToolbar: true,
+  /**
+   * Si no hay sesión válida en `localStorage`, aplica usuario de desarrollo **solo al entrar al layout
+   * con sidebar** (`MainLayout`), no en `/home` ni otras rutas públicas.
+   */
+  fallbackDevUserSession: false,
 
+  platformProviderApiBaseUrl: 'https://veyra-backend.redwave-e7e23e62.canadacentral.azurecontainerapps.io/api/v1',
+  platformProviderWsUrl: 'ws://localhost:8080/ws',
   // Analytics Bounded Context
   platformProviderAnalyticsStaffTerminationsEndpointPath: '/nursing-homes/{nursingHomeId}/analytics/staff-terminations',
   platformProviderAnalyticsStaffHiresEndpointPath: '/nursing-homes/{nursingHomeId}/analytics/staff-hires',
@@ -21,6 +29,7 @@ export const environment = {
   // Nursing Bounded Context
   platformProviderResidentVitalSigsEndpointPath: '/resident/{residentId}/vital-signs',
   platformProviderDevicesEndpointPath: '/devices',
+  platformProviderNursingHomeDevicesEndpointPath: '/nursing-homes/{nursingHomeId}/devices',
   platformProviderResidentAllergiesEndpointPath: '/residents/{residentId}/allergies',
   platformProviderAdministratorNursingHomesEndpointPath: '/administrators/{administratorId}/nursing-homes',
   platformProviderResidentRoomsEndpointPath: '/nursing-homes/{nursingHomeId}/rooms/{residentId}',
@@ -28,12 +37,27 @@ export const environment = {
   platformProviderNursingHomeResidentsEndpointPath: '/nursing-homes/{nursingHomeId}/residents',
   platformProviderNursingHomeStaffEndpointPath: '/nursing-homes/{nursingHomeId}/staff',
   platformProviderNursingHomeRoomsEndpointPath: '/nursing-homes/{nursingHomeId}/rooms',
+  platformProviderResidentRelativesEndpointPath: '/residents/{residentId}/relatives',
+  platformProviderNursingHomeRelativesEndpointPath: '/nursing-homes/{nursingHomeId}/relatives',
   platformProviderMedicationsEndpointPath:'/medications',
   platformProviderNursingHomesEndpointPath:'/nursing-homes',
   platformProviderResidentsEndpointPath:'/residents',
   platformProviderRoomsEndpointPath: '/rooms',
+  platformProviderRelativesEndpointPath: '/relatives',
+  platformProviderMonitoringResidentsEndpointPath: '/nursing-homes/{nursingHomeId}/doctors/{doctorId}/monitoring-residents',
 
   // Profiles Bounded Context
   platformProviderBusinessProfilesEndpointPath: '/business-profiles',
   platformProviderPersonProfilesEndpointPath: '/person-profiles',
+
+  // Activities Bounded Context
+  platformProviderActivitiesEndpointPath: '/activities',
+
+  // Alerts Bounded Context
+  platformProviderAlertsEndpointPath: '/alerts',
+
+  //Tracking Bounden Context
+  platformProviderDeviceAssignmentsEndpointPath: '/devices/{deviceId}/assignments',
+  platformProviderWsTrackingTopicPath: '/topic/tracking',
+
 };
